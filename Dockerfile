@@ -10,7 +10,7 @@ ENV LC_ALL     en_US.UTF-8
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update && apt-get -y install  build-essential curl \
 																				  g++-multilib gcc-multilib openssl git git-core htop vim screen wget \
-																					unzip openssh-server
+																					unzip openssh-server inetutils-ping sed telnet
 
 # Install Java7u60
 RUN mkdir -p /usr/lib/jvm
