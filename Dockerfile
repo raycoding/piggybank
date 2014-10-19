@@ -8,11 +8,11 @@ ENV LC_ALL     en_US.UTF-8
 
 # Installing bunch of essentials
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-RUN apt-get update && apt-get -y install  build-essential curl \
-																				  g++-multilib gcc-multilib openssl git git-core htop vim screen wget \
-																					unzip openssh-server inetutils-ping sed telnet
+RUN apt-get update && apt-get -y install  gcc g++ curl g++-multilib gcc-multilib openssl \
+																					git htop vim screen wget unzip openssh-server openssh-client \
+																					inetutils-ping sed telnet
 
-# Install Java7u60
+# Installing Java7u60
 RUN mkdir -p /usr/lib/jvm
 RUN (cd /usr/lib/jvm && wget  -q -nc --no-cookies \
 					--no-check-certificate \
@@ -23,4 +23,9 @@ RUN update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.7.0_60/bi
 RUN update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.7.0_60/bin/javac 100
 ENV JAVA_HOME			/usr/lib/jvm/jdk1.7.0_60
 ENV JRE_HOME		  /usr/lib/jvm/jdk1.7.0_60/jre
+
+RUN rm -rf /usr/lib/jvm/jdk-7u60-linux-x64.tar.gz
+
+# Default command.
+CMD ["/bin/bash"]
 
