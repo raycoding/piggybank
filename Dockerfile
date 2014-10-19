@@ -9,8 +9,8 @@ ENV LC_ALL     en_US.UTF-8
 # Installing bunch of essentials
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update && apt-get -y install  gcc g++ curl g++-multilib gcc-multilib openssl \
-																					git htop vim screen wget unzip openssh-server openssh-client \
-																					inetutils-ping sed telnet
+git htop vim screen wget unzip openssh-server openssh-client \
+inetutils-ping sed telnet maven
 
 # Installing Java7u60
 RUN mkdir -p /usr/lib/jvm
