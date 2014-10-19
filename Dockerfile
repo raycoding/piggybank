@@ -19,8 +19,9 @@ RUN (cd /usr/lib/jvm && wget  -q -nc --no-cookies \
 					--header "Cookie: oraclelicense=accept-securebackup-cookie" \
 					http://download.oracle.com/otn-pub/java/jdk/7u60-b19/jdk-7u60-linux-x64.tar.gz)
 RUN tar -xzvf /usr/lib/jvm/jdk-7u60-linux-x64.tar.gz -C /usr/lib/jvm
-RUN update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.7.0_60/bin/java 100
-RUN update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.7.0_60/bin/javac 100
+RUN (update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.7.0_60/bin/java 1 && update-alternatives --set java /usr/lib/jvm/jdk1.7.0_60/bin/java)
+RUN (update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.7.0_60/bin/javac 1 && update-alternatives --set javac /usr/lib/jvm/jdk1.7.0_60/bin/javac)
+RUN (update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/jdk1.7.0_60/bin/javaws 1 && update-alternatives --set javaws /usr/lib/jvm/jdk1.7.0_60/bin/javaws)
 ENV JAVA_HOME			/usr/lib/jvm/jdk1.7.0_60
 ENV JRE_HOME		  /usr/lib/jvm/jdk1.7.0_60/jre
 
